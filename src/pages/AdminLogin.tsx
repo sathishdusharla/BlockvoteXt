@@ -26,8 +26,9 @@ const AdminLogin = () => {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data.success && data.token) {
         setMessage(<p style={{ color: 'green' }}>{data.message}</p>);
+        localStorage.setItem('authToken', data.token); // Store the token securely
         setTimeout(() => {
           navigate(`/admin-dashboard?email=${data.email}`);
         }, 2000);
