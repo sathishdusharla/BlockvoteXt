@@ -47,7 +47,6 @@ function App() {
           <Route path="voter-login" element={<VoterLogin />} />
           <Route path="voter-registration" element={<VoterRegistration />} />
           <Route path="voting" element={<ProtectedVoterRoute><Voting /></ProtectedVoterRoute>} />
-          <Route path="results" element={<ProtectedVoterRoute><Results /></ProtectedVoterRoute>} />
           <Route path="voter_dashboard" element={<ProtectedVoterRoute><VoterDashboard /></ProtectedVoterRoute>} />
 
           {/* Admin Routes */}
@@ -55,7 +54,8 @@ function App() {
           <Route path="admin-dashboard" element={<ProtectedAdminRoute><AdminDashboard /></ProtectedAdminRoute>} />
           <Route path="admin/conduct-elections" element={<ProtectedAdminRoute><ConductElections /></ProtectedAdminRoute>} />
           <Route path="admin/add-admin" element={<ProtectedAdminRoute><AddAdmin /></ProtectedAdminRoute>} />
-          
+          <Route path="admin/results" element={<ProtectedAdminRoute><Results /></ProtectedAdminRoute>} />
+
           {/* Other Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Route>
