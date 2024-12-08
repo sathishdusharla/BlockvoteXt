@@ -51,7 +51,7 @@ const AdminDashboard = () => {
 
           {/* Center Section: Image */}
           <div className="flex justify-center items-center w-1/3">
-            <img src="src/AdminDashboard.png" alt="Admin Dashboard Illustration" className="max-w-xs" />
+            <img src="/AdminDashboard.png" alt="Admin Dashboard Illustration" className="max-w-xs" />
           </div>
         </div>
 
