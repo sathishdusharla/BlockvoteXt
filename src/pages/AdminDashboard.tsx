@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield } from 'lucide-react';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      navigate('/admin-login'); // Redirect to login if no token is found
+    } else {
+      // Optionally verify the token with the server here
+    }
+  }, [navigate]);
 
   const handleAddAdminClick = () => {
     navigate('/admin/add-admin');
