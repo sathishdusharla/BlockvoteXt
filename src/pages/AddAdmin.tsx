@@ -50,7 +50,7 @@ const AddAdmin = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-slate-800 rounded-lg p-6 border border-blue-500/20">
-            <img src="src/Admindashimg.png" alt="Admin illustration" className="w-full rounded-lg shadow-xl" />
+            <img src="Admindashimg.png" alt="Admin illustration" className="w-full rounded-lg shadow-xl" />
           </div>
 
           <div className="bg-slate-800 rounded-lg p-6 border border-blue-500/20">
