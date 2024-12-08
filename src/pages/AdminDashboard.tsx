@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield } from 'lucide-react';
+import { useEffect } from 'react';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
 
+  // Redirect to login if the user is not logged in
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-      navigate('/admin-login'); // Redirect to login if no token is found
-    } else {
-      // Optionally verify the token with the server here
+    const email = localStorage.getItem('adminEmail');
+    if (!email) {
+      navigate('/admin-login');
     }
   }, [navigate]);
 
@@ -24,6 +23,11 @@ const AdminDashboard = () => {
 
   const handleResultsClick = () => {
     navigate('/results');
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('adminEmail'); // Clear the admin session
+    navigate('/admin-login'); // Redirect to login page
   };
 
   return (
@@ -61,8 +65,18 @@ const AdminDashboard = () => {
 
           {/* Center Section: Image */}
           <div className="flex justify-center items-center w-1/3">
-            <img src="AdminDashboard.png" alt="Admin Dashboard Illustration" className="max-w-xs" />
+            <img src="/Admindashimg.png" alt="Admin Dashboard Illustration" className="max-w-xs" />
           </div>
+        </div>
+
+        {/* Logout Button */}
+        <div className="mt-4 text-center">
+          <button
+            onClick={handleLogoutClick}
+            className="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300"
+          >
+            Logout
+          </button>
         </div>
 
         {/* Restricted Access Text */}
