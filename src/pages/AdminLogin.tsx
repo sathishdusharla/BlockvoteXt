@@ -9,29 +9,27 @@ const AdminLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formDataToSend = new FormData();
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('password', formData.password);
-
     try {
       const response = await fetch('https://your-backend-endpoint.com/admin-login', {
         method: 'POST',
-        body: formDataToSend,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
       console.log('Response Data:', data);
 
-      if (data.success && data.token) {
-        setMessage('Login successful!');
+      if (data.success) {
+        // Save token in localStorage
         localStorage.setItem('authToken', data.token);
-        navigate('/admin-dashboard'); // Navigate to the correct route
+        // Navigate to Admin Dashboard
+        navigate('/admin-dashboard');
       } else {
-        setMessage('Login failed: ' + data.message);
+        setMessage(data.message || 'Login failed. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
-      setMessage('An error occurred. Please try again.');
+      setMessage('An error occurred. Please try again later.');
     }
   };
 
