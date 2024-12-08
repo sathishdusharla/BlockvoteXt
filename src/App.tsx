@@ -12,8 +12,9 @@ import Results from './pages/Results';
 import VoterDashboard from './pages/VoterDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import ConductElections from './pages/ConductElections';
-import AddAdmin from './pages/AddAdmin'; // Import AddAdmin
-import PrivacyPolicy from './pages/PrivacyPolicy'; // Import PrivacyPolicy
+import AddAdmin from './pages/AddAdmin';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+
 function App() {
   return (
     <Router>
