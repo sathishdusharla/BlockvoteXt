@@ -39,7 +39,7 @@ const VoterRegistration = () => {
       if (result.success) {
         setMessage(<p style={{ color: 'green' }}>{result.message}</p>);
         setTimeout(() => {
-          window.location.href = '/Homepage/index.html'; // Adjust the path to your homepage
+          window.location.href = '/index'; // Adjust the path to your homepage
         }, 3000);
       } else {
         setMessage(<p style={{ color: 'red' }}>{result.message}</p>);
