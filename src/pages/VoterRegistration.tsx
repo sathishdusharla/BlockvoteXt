@@ -14,10 +14,40 @@ const VoterRegistration = () => {
     password: '',
     confirmPassword: ''
   });
+  const [message, setMessage] = useState<JSX.Element | string>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add registration logic here
+
+    // Capture form data
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('mobile', formData.mobile);
+    data.append('email', formData.email);
+    data.append('age', formData.age);
+    data.append('idNumber', formData.idNumber);
+    data.append('address', formData.address);
+    data.append('password', formData.password);
+    data.append('confirmPassword', formData.confirmPassword);
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbz9QeeqI3Rpeo2a6igeqE8LU6419l80XdhYP9ic_YTFZa17m6rTy8Y8Lr615UdFG5hp/exec', {
+        method: 'POST',
+        body: data
+      });
+      const result = await response.json();
+      if (result.success) {
+        setMessage(<p style={{ color: 'green' }}>{result.message}</p>);
+        setTimeout(() => {
+          window.location.href = '/Homepage/index.html'; // Adjust the path to your homepage
+        }, 3000);
+      } else {
+        setMessage(<p style={{ color: 'red' }}>{result.message}</p>);
+      }
+    } catch (error) {
+      console.log('Error:', error);
+      setMessage(<p style={{ color: 'red' }}>An error occurred. Please try again.</p>);
+    }
   };
 
   return (
@@ -29,7 +59,7 @@ const VoterRegistration = () => {
             <h2 className="text-3xl font-bold text-white">Voter Registration</h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form id="registrationForm" onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300">
@@ -168,6 +198,8 @@ const VoterRegistration = () => {
               Register
             </button>
           </form>
+
+          <div id="message" className="mt-4 text-center">{message}</div>
 
           <p className="mt-4 text-center text-gray-400">
             Already have an account?{' '}
